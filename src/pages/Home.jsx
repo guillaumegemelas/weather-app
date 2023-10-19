@@ -20,7 +20,7 @@ export default function Home() {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_API_KEY,
   });
 
-  const { data, isLoading, error, isFetching, refetch } = useQuery({
+  const { data, isLoading, isFetching, refetch } = useQuery({
     queryKey: ["data", city],
     queryFn: async () => {
       const response = await axios.get(
@@ -51,9 +51,15 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center h-screen bg-slate-300 pt-96 bg-custom">
       {!data ? (
-        <h2 className="mb-12 text-4xl text-white">
-          Météo en direct: Selectionnez votre ville
-        </h2>
+        <div>
+          <h2 className="flex mb-12 text-4xl text-white">
+            <span class="relative flex h-3 w-3 mr-4">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+            </span>
+            Météo en direct: Selectionnez votre ville
+          </h2>
+        </div>
       ) : (
         <h2 className="mb-12 text-4xl text-white ">
           Météo à {data.location && data.location.name}
@@ -75,7 +81,7 @@ export default function Home() {
           Ville:
         </label>{" "}
         <input
-          className="px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+          className="px-3 py-2 leading-tight text-gray-700 border-2 border-blue-200 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
           id="city-input"
           type="text"
           value={city}
