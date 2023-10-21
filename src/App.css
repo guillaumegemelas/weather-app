@@ -3,14 +3,16 @@
   /* Vous pouvez ajuster les propriétés de l'image de fond selon vos besoins */
   background-size: cover;
   background-position: center;
+  height: 100%;
+  overflow: auto;
 }
 
-/*----loader---------*/
+/*----loader-----------*/
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: 100vh;
   min-width: 100vw;
   /* background-color: #ededed; */
   background-image: url("./img/nebula2.png");
