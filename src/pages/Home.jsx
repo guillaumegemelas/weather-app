@@ -3,42 +3,23 @@ import React from "react";
 //test import googlemap API-------------------
 import { useLoadScript } from "@react-google-maps/api";
 //--------------------------------------------
-import { useState } from "react";
-
-import axios from "axios";
 
 //test import react query------------
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import GoogleMapToSet from "../components/GoogleMapToSet";
 import Loader from "../components/Loader";
 
-export default function Home() {
-  const [city, setCity] = useState("");
+//import du custom Hook
+import useFetch from "../Hooks/useFetch";
 
+export default function Home() {
   //------partie script map------------------------
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_API_KEY,
   });
 
-  const { data, isLoading, isFetching, refetch } = useQuery({
-    queryKey: ["data", city],
-    queryFn: async () => {
-      const response = await axios.get(
-        `http://api.weatherstack.com/current?access_key=${
-          import.meta.env.VITE_WEATHER_API_KEY
-        }&query=${city}`
-      );
-      console.log(response.data, "log response.data");
-      // console.log(response.data.error.code, "log data error");
-      // requete asynchrone: obligé de mettre data&& deavant le log
-      //{
-      //   data && console.log(data, "log de data homeNormal dans requete");
-      // }
-      return response.data;
-    },
-    enabled: false, // Désactive l'appel à la requête tant que nous n'avons pas cliqué sur le bouton: sinon ca rame bcp
-    cacheTime: 0, // Ignorer le cache pour éviter que si on rentre une seconde fois une meme ville useQuery n'affiche directement les données venant du cache enregistré
-  });
+  //utilisation du custom Hook
+  const { data, isLoading, isFetching, refetch, city, setCity } = useFetch();
 
   //rajouter !isLoaded pour que la map puisse se charger
   if (isLoading || isFetching || !isLoaded) return <Loader />;
