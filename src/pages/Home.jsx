@@ -13,7 +13,7 @@ import Loader from "../components/Loader";
 import useFetch from "../Hooks/useFetch";
 
 export default function Home() {
-  //------partie script map------------------------
+  //------partie script map----------------------
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_API_KEY,
   });
