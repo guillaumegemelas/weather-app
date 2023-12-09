@@ -2,7 +2,7 @@ import React from "react";
 
 //test import googlemap API-------------------
 import { useLoadScript } from "@react-google-maps/api";
-//------------------------------------------
+//--------------------------------------
 
 //test import react query------------
 // import { useQuery } from "react-query";
