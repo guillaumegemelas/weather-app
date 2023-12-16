@@ -2,7 +2,7 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { useState } from "react";
 
-//dans le custom hook, si fichier séparé, je reprends tout le destructuring du useQuery { data, isLoading, isFetching, refetch } dans le ficheir s"paré, ce qui ne serait pas le cas si  le CH  eait dans le Home.jsx
+//dans le custom hook, si fichier séparé, je reprends tout le destructuring du useQuery { data, isLoading, isFetching, refetch } dans le ficheir s"paré, ce qui ne serait pas le cas si  le CH    eait dans le Home.jsx
 const useFetch = () => {
   const [city, setCity] = useState("");
 
